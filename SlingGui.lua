@@ -8,10 +8,7 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHept
 local Window = Library.CreateLib("Sling Script v1.0", "Sentinel")
 local Areas
 local Resend
-local EggConfig = {
-    [1] 
-    [2] 
-}
+local EggConfig
 
 getgenv().Balls = false;
 getgenv().BallResend = false;
