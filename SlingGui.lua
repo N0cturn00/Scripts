@@ -138,7 +138,7 @@ end)
 
 HatchingSection:NewDropdown("Hatch Type", "Select the  number of eggs you can hatch", {"Single", "Multi"}, function(HatchOption)
     print(HatchOption)
-	HatchType = HatchOption
+    HatchType = HatchOption
 end)
 
 HatchingSection:NewDropdown("Eggs", "Select the egg you want to hatch", {"Classic Egg", "Sand Egg", "Ice Egg", "Magma Egg", "Pearl Egg", "Moon  Egg", "Candy Egg"}, function(EggOption)
