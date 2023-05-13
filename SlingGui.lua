@@ -1,5 +1,24 @@
+local plr = game:GetService("Players").LocalPlayer
+local uis = game:GetService("UserInputService")
+local rs = game:GetService("ReplicatedStorage")
+local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
+local Rendered = game.Workspace.Areas
+local location = CFrame.new
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Sling Script v1.0", "Sentinel")
+local Areas
+local Resend
+local HatchType
+local Egg
 
 
+getgenv().Balls = false;
+getgenv().BallResend = false;
+getgenv().Craft = false;
+getgenv().Egg = false;
+getgenv().FreeReward = false;
+getgenv().Equip = false;
+getgenv().Antiafk = false;
 
 --Farming
 local Farming = Window:NewTab("Farming")
@@ -82,7 +101,7 @@ HatchingSection:NewToggle("Hatch", "Start hatching", function(Hatchstate)
     if Hatchstate then
         getgenv().Egg = true
         repeat
-            rs.Events.RequestEggHatch:FireServer(unpack(EggConfig))
+            rs.Events.RequestEggHatch:FireServer(Egg, Type)
             wait(0.1)
         until getgenv().Egg == false
     else
@@ -119,11 +138,12 @@ end)
 
 HatchingSection:NewDropdown("Hatch Type", "Select the  number of eggs you can hatch", {"Single", "Multi"}, function(HatchOption)
     print(HatchOption)
-
+	HatchType = HatchOption
 end)
 
 HatchingSection:NewDropdown("Eggs", "Select the egg you want to hatch", {"Classic Egg", "Sand Egg", "Ice Egg", "Magma Egg", "Pearl Egg", "Moon  Egg", "Candy Egg"}, function(EggOption)
     print(EggOption)
+    Egg = EggOption
 end)
 
 --Misc
