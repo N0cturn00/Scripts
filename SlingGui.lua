@@ -129,6 +129,7 @@ HatchingSection:NewToggle("Auto Equip Best", "Automatically equip ur best pets",
         if getgenv().Balls == false then
             repeat
                 rs.Events.UIAction:FireServer("EquipBestBalls")
+                wait(1)
             until getgenv().Balls == true
         end
     else
