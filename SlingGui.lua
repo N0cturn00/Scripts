@@ -9,13 +9,6 @@ local Window = Library.CreateLib("Sling Script v1.0", "Sentinel")
 local Areas
 local Resend
 
-getgenv().Balls = false;
-getgenv().BallResend = false;
-getgenv().Craft = false;
-getgenv().Egg = false;
-getgenv().FreeReward = false;
-getgenv().Equip = false;
-getgenv().Antiafk = false;
 
 --Farming
 local Farming = Window:NewTab("Farming")
