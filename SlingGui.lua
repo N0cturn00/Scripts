@@ -1,13 +1,4 @@
-local plr = game:GetService("Players").LocalPlayer
-local uis = game:GetService("UserInputService")
-local rs = game:GetService("ReplicatedStorage")
-local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
-local Rendered = game.Workspace.Areas
-local location = CFrame.new
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Sling Script v1.0", "Sentinel")
-local Areas
-local Resend
+
 
 
 --Farming
