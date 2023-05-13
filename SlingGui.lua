@@ -10,6 +10,8 @@ local Areas
 local Resend
 local Type
 local Egg
+local WebhookUrl
+
 
 
 getgenv().Balls = false;
@@ -19,6 +21,7 @@ getgenv().Egg = false;
 getgenv().FreeReward = false;
 getgenv().Equip = false;
 getgenv().Antiafk = false;
+getgenv().Webhook = false;
 
 --Farming
 local Farming = Window:NewTab("Farming")
@@ -166,3 +169,44 @@ MiscSection:NewToggle("Auto time rewards", "Automatically collect time rewards",
         getgenv().FreeReward = false
     end
 end)
+
+MiscSection:NewButton("Anti-Afk", "Make you unable to get kicked from being", function()
+    local vu = game:GetService("VirtualUser")
+    plr.Idled:connect(function()
+        vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        wait(1)
+        vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+    end)
+end)
+
+--User
+local User = Window:NewTab("User")
+local UserSection = User:NewSection("User")
+
+Section:NewSlider("SliderText", "SliderInfo", 100, 16, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+
+Section:NewSlider("SliderText", "SliderInfo", 250, 50, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+end)
+
+--Webhooks
+local Webhooks = Window:NewTab("Webhooks")
+local WebhooksSection = Webhooks:NewSection("Webhooks")
+
+WebhooksSection:NewTextBox("Webhook Url", "Url of the webhook you want yo send the notifier to", function(txt)
+	WebhookUrl = txt
+end)
+
+WebhooksSection:NewToggle("Hatch Notify", "Toggle the hatching notifier", function(state)
+    if state then
+        getgenv().Webhook = true
+    else
+        pgetgenv().Webhook = false
+    end
+end)
+
+--Settings
+local Settings = Window:NewTab("Settings")
+local SettingsSection = Settings:NewSection("Settings")
