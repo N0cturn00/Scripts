@@ -101,7 +101,7 @@ HatchingSection:NewToggle("Hatch", "Start hatching", function(Hatchstate)
     if Hatchstate then
         getgenv().Egg = true
         repeat
-            rs.Events.RequestEggHatch:FireServer(Egg, HatchType)
+            rs.Events.RequestEggHatch:FireServer(Egg,HatchType)
             wait(0.1)
         until getgenv().Egg == false
     else
