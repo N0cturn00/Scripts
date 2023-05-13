@@ -8,9 +8,10 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHept
 local Window = Library.CreateLib("Sling Script v1.0", "Sentinel")
 local Areas
 local Resend
-local EggOption
-local HatchOption
-
+local EggConfig = {
+    [1] 
+    [2] 
+}
 
 getgenv().Balls = false;
 getgenv().BallResend = false;
@@ -101,7 +102,7 @@ HatchingSection:NewToggle("Hatch", "Start hatching", function(Hatchstate)
     if Hatchstate then
         getgenv().Egg = true
         repeat
-            rs.Events.RequestEggHatch:FireServer(EggOption,HatchOption)
+            rs.Events.RequestEggHatch:FireServer(unpack(EggConfig))
             wait(0.1)
         until getgenv().Egg == false
     else
@@ -136,15 +137,12 @@ HatchingSection:NewToggle("Auto Equip Best", "Automatically equip ur best pets",
     end
 end)
 
-HatchingSection:NewDropdown("Hatch Type", "Select the  number of eggs you can hatch", {"Single", "Multi"}, function(Option)
-    print(Option)
-    HatchOption = Option
-    print(EggOption)
+HatchingSection:NewDropdown("Hatch Type", "Select the  number of eggs you can hatch", {"Single", "Multi"}, function(HatchOption)
+    print(HatchOption)
+
 end)
 
-HatchingSection:NewDropdown("Eggs", "Select the egg you want to hatch", {"Classic Egg", "Sand Egg", "Ice Egg", "Magma Egg", "Pearl Egg", "Moon  Egg", "Candy Egg"}, function(Option1)
-    print(Option1)
-    EggOption = Option1
+HatchingSection:NewDropdown("Eggs", "Select the egg you want to hatch", {"Classic Egg", "Sand Egg", "Ice Egg", "Magma Egg", "Pearl Egg", "Moon  Egg", "Candy Egg"}, function(EggOption)
     print(EggOption)
 end)
 
