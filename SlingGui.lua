@@ -8,8 +8,11 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHept
 local Window = Library.CreateLib("Sling Script v1.0", "Sentinel")
 local Areas
 local Resend
-local HatchOption
-local EggOption
+
+local Config = {
+    ["EggOption"]
+    ["HatchOption"]
+}
 
 getgenv().Balls = false;
 getgenv().BallResend = false;
@@ -100,7 +103,7 @@ HatchingSection:NewToggle("Hatch", "Start hatching", function(Hatchstate)
     if Hatchstate then
         getgenv().Egg = true
         repeat
-            rs.Events.RequestEggHatch:FireServer(EggOption, HatchOption)
+            rs.Events.RequestEggHatch:FireServer(EggOption,HatchOption)
             wait(0.1)
         until getgenv().Egg == false
     else
