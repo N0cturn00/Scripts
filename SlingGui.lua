@@ -183,11 +183,11 @@ end)
 local User = Window:NewTab("User")
 local UserSection = User:NewSection("User")
 
-Section:NewSlider("SliderText", "SliderInfo", 100, 16, function(s) -- 500 (MaxValue) | 0 (MinValue)
+UserSection:NewSlider("SliderText", "SliderInfo", 100, 16, function(s) -- 500 (MaxValue) | 0 (MinValue)
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
 end)
 
-Section:NewSlider("SliderText", "SliderInfo", 250, 50, function(s) -- 500 (MaxValue) | 0 (MinValue)
+UserSection:NewSlider("SliderText", "SliderInfo", 250, 50, function(s) -- 500 (MaxValue) | 0 (MinValue)
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
 end)
 
