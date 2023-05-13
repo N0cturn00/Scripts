@@ -9,10 +9,6 @@ local Window = Library.CreateLib("Sling Script v1.0", "Sentinel")
 local Areas
 local Resend
 
-local Config = {
-    ["EggOption"];
-    ["HatchOption"]
-}
 
 getgenv().Balls = false;
 getgenv().BallResend = false;
