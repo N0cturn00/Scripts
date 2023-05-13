@@ -139,7 +139,7 @@ HatchingSection:NewDropdown("Hatch Type", "Select the  number of eggs you can ha
     HatchOption = Option
 end)
 
-HatchingSection:NewDropdown("Eggs", "Select the egg you want to hatch", {"Classic Egg", "Sand Egg", "Ice Egg", "Magma Egg", "Pearl Egg", "Moon  Egg", "Candy Egg"}, function(Option)
+HatchingSection:NewDropdown("Eggs", "Select the egg you want to hatch", {"Classic Egg", "Sand Egg", "Ice Egg", "Magma Egg", "Pearl Egg", "Moon  Egg", "Candy Egg"}, function(Option1)
     print(EggOption)
     EggOption = Option
 end)
