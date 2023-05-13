@@ -8,6 +8,8 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHept
 local Window = Library.CreateLib("Sling Script v1.0", "Sentinel")
 local Areas
 local Resend
+local EggOption
+local HatchOption
 
 
 getgenv().Balls = false;
@@ -135,13 +137,15 @@ HatchingSection:NewToggle("Auto Equip Best", "Automatically equip ur best pets",
 end)
 
 HatchingSection:NewDropdown("Hatch Type", "Select the  number of eggs you can hatch", {"Single", "Multi"}, function(Option)
-    print(HatchOption)
+    print(Option)
     HatchOption = Option
+    print(EggOption)
 end)
 
 HatchingSection:NewDropdown("Eggs", "Select the egg you want to hatch", {"Classic Egg", "Sand Egg", "Ice Egg", "Magma Egg", "Pearl Egg", "Moon  Egg", "Candy Egg"}, function(Option1)
+    print(Option1)
+    EggOption = Option1
     print(EggOption)
-    EggOption = Option
 end)
 
 --Misc
