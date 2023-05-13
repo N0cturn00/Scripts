@@ -10,7 +10,7 @@ local Areas
 local Resend
 
 local Config = {
-    ["EggOption"]
+    ["EggOption"];
     ["HatchOption"]
 }
 
