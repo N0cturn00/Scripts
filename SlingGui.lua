@@ -22,6 +22,7 @@ getgenv().FreeReward = false;
 getgenv().Equip = false;
 getgenv().Antiafk = false;
 getgenv().Webhook = false;
+getgenv().Achievements = false;
 
 --Farming
 local Farming = Window:NewTab("Farming")
@@ -167,6 +168,18 @@ MiscSection:NewToggle("Auto time rewards", "Automatically collect time rewards",
         until getgenv().FreeReward == false
     else
         getgenv().FreeReward = false
+    end
+end)
+
+MiscSection:NewToggle("Auto Claim ClaimAchievement", "Auto claims achievements", function(state)
+    if state then
+        getgenv().Achievements = true
+        repeat
+            rs.Events.UIAction:FireServer("ClaimAchievement", "Eggs")
+            rs.Events.UIAction:FireServer("ClaimAchievement", "Eggs")
+        until getgenv().Achievements == false
+    else
+        getgenv().Achievements = false
     end
 end)
 
