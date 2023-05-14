@@ -171,7 +171,7 @@ MiscSection:NewToggle("Auto time rewards", "Automatically collect time rewards",
     end
 end)
 
-MiscSection:NewToggle("Auto Claim ClaimAchievement", "Auto claims achievements", function(state)
+MiscSection:NewToggle("Auto Achievement", "Auto claims achievements", function(state)
     if state then
         getgenv().Achievements = true
         repeat
