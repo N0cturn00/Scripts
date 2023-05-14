@@ -177,6 +177,7 @@ MiscSection:NewToggle("Auto Achievement", "Auto claims achievements", function(s
         repeat
             rs.Events.UIAction:FireServer("ClaimAchievement", "Eggs")
             rs.Events.UIAction:FireServer("ClaimAchievement", "Eggs")
+            wait(0.1)
         until getgenv().Achievements == false
     else
         getgenv().Achievements = false
