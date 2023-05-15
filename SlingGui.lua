@@ -11,6 +11,7 @@ local Resend
 local Type
 local Egg
 local WebhookUrl
+local BallValue
 
 
 
@@ -85,8 +86,9 @@ FarmingSection:NewToggle("Ball Resend (Not working proprely)", "If you want that
     end
 end)
 
-FarmingSection:NewSlider("Number a balls until resend", "Minimum of balls before resend", 50, 1, function(BallValue) -- 36 (MaxValue) | 1 (MinValue)
-    print(BallValue)
+FarmingSection:NewSlider("Number a balls until resend", "Minimum of balls before resend", 50, 1, function(Value) -- 36 (MaxValue) | 1 (MinValue)
+    print(Value)
+    BallValue = Value
 end)
 
 FarmingSection:NewDropdown("Area", "Select the area you want to farm in", {1, 2, 3, 4, 5, 6, 7, 8,}, function(AreaOption)
@@ -106,7 +108,7 @@ HatchingSection:NewToggle("Hatch", "Start hatching", function(Hatchstate)
         getgenv().Egg = true
         repeat
             rs.Events.RequestEggHatch:FireServer(Egg,Type)
-            wait(0.1)
+            wait(0.2)
         until getgenv().Egg == false
     else
         getgenv().Egg = false
@@ -147,7 +149,7 @@ HatchingSection:NewDropdown("Hatch Type", "Select the  number of eggs you can ha
     print(Type)
 end)
 
-HatchingSection:NewDropdown("Eggs", "Select the egg you want to hatch", {"Classic Egg", "Sand Egg", "Ice Egg", "Magma Egg", "Pearl Egg", "Moon  Egg", "Candy Egg","Mushroom Egg",}, function(EggOption)
+HatchingSection:NewDropdown("Eggs", "Select the egg you want to hatch", {"Classic Egg", "Sand Egg", "Ice Egg", "Magma Egg", "Pearl Egg", "Moon  Egg", "Candy Egg", "Mushroom Egg",}, function(EggOption)
     print(EggOption)
     Egg = EggOption
     print(Egg)
@@ -176,7 +178,7 @@ MiscSection:NewToggle("Auto Achievement", "Auto claims achievements", function(s
         getgenv().Achievements = true
         repeat
             rs.Events.UIAction:FireServer("ClaimAchievement", "Eggs")
-            rs.Events.UIAction:FireServer("ClaimAchievement", "Eggs")
+            rs.Events.UIAction:FireServer("ClaimAchievement", "Balls")
             wait(0.1)
         until getgenv().Achievements == false
     else
