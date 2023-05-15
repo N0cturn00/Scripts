@@ -2,7 +2,7 @@ local plr = game:GetService("Players").LocalPlayer
 local uis = game:GetService("UserInputService")
 local rs = game:GetService("ReplicatedStorage")
 local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
-local Rendered = game.Workspace.Areas
+local Rendered = game.Workspace.Render
 local location = CFrame.new
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Sling Script v1.0", "Sentinel")
@@ -79,7 +79,7 @@ FarmingSection:NewToggle("Ball Resend (Not working proprely)", "If you want that
                 print ("Relaunching")
                 game:GetService("ReplicatedStorage").Events.RequestCancelShoot:FireServer()
             end
-            wait(1)
+            wait(0.1)
         until getgenv().BallResend == false
     else
         getgenv().BallResend = false
@@ -226,3 +226,7 @@ end)
 --Settings
 local Settings = Window:NewTab("Settings")
 local SettingsSection = Settings:NewSection("Settings")
+
+SettingsSection:NewKeybind("Toggle Ui", "Toggles the script GUI", Enum.KeyCode.F, function()
+	Library:ToggleUI()
+end)
