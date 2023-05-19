@@ -17,7 +17,7 @@ local BallValue
 
 getgenv().Balls = false;
 getgenv().BallResend = false;
-getgenv().Craft = false;
+getgenv().Shiny = false;
 getgenv().Egg = false;
 getgenv().FreeReward = false;
 getgenv().Equip = false;
@@ -87,8 +87,8 @@ FarmingSection:NewToggle("Ball Resend (Not working proprely)", "If you want that
 end)
 
 FarmingSection:NewSlider("Number a balls until resend", "Minimum of balls before resend", 50, 1, function(Value) -- 36 (MaxValue) | 1 (MinValue)
-    print(Value)
     BallValue = Value
+    print(BallValue)
 end)
 
 FarmingSection:NewDropdown("Area", "Select the area you want to farm in", {1, 2, 3, 4, 5, 6, 7, 8,}, function(AreaOption)
@@ -108,36 +108,36 @@ HatchingSection:NewToggle("Hatch", "Start hatching", function(Hatchstate)
         getgenv().Egg = true
         repeat
             rs.Events.RequestEggHatch:FireServer(Egg,Type)
-            wait(0.2)
+            wait(0.4)
         until getgenv().Egg == false
     else
         getgenv().Egg = false
     end
 end)
 
-HatchingSection:NewToggle("Auto Shiny", "Automatically merges ur pets to make them shiny", function(Shinystate)
+HatchingSection:NewToggle("Auto Shiny", "Automatically merges ur pets to make them shiny", function(Shinystate) 
     if Shinystate then
-        getgenv().Craft = true
-        if getgenv().Balls == false then
-            repeat
+        getgenv().Shiny = true
+        repeat
+            if getgenv().Balls == false then
                 rs.Events.UIAction:FireServer("CombineAllBalls")
                 wait(1)
-            until getgenv().Balls == true
-        end
+            end
+        until getgenv().Shiny == false
     else
-        getgenv().craft = false
+        getgenv().Shiny = false
     end
 end)
 
 HatchingSection:NewToggle("Auto Equip Best", "Automatically equip ur best pets", function(Equipstate)
     if Equipstate then
         getgenv().Equip = true
-        if getgenv().Balls == false then
-            repeat
+        repeat
+            if getgenv().Balls == false then
                 rs.Events.UIAction:FireServer("EquipBestBalls")
                 wait(1)
-            until getgenv().Balls == true
-        end
+            end
+        until getgenv().Equip == false
     else
         getgenv().Equip = false
     end
@@ -165,7 +165,7 @@ MiscSection:NewToggle("Auto time rewards", "Automatically collect time rewards",
         repeat
             for i=1,12 do
                 game:GetService("ReplicatedStorage").Events.UIAction:FireServer("ClaimTimeReward",i)
-                wait(1)
+                wait(2)
             end
         until getgenv().FreeReward == false
     else
@@ -179,7 +179,7 @@ MiscSection:NewToggle("Auto Achievement", "Auto claims achievements", function(s
         repeat
             rs.Events.UIAction:FireServer("ClaimAchievement", "Eggs")
             rs.Events.UIAction:FireServer("ClaimAchievement", "Balls")
-            wait(0.1)
+            wait(1)
         until getgenv().Achievements == false
     else
         getgenv().Achievements = false
