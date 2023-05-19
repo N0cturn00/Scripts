@@ -108,7 +108,7 @@ HatchingSection:NewToggle("Hatch", "Start hatching", function(Hatchstate)
         getgenv().Egg = true
         repeat
             rs.Events.RequestEggHatch:FireServer(Egg,Type)
-            wait(0.4)
+            wait(0.1)
         until getgenv().Egg == false
     else
         getgenv().Egg = false
