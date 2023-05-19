@@ -121,8 +121,8 @@ HatchingSection:NewToggle("Auto Shiny", "Automatically merges ur pets to make th
         repeat
             if getgenv().Balls == false then
                 rs.Events.UIAction:FireServer("CombineAllBalls")
-                wait(1)
             end
+            wait(1)
         until getgenv().Shiny == false
     else
         getgenv().Shiny = false
@@ -135,8 +135,8 @@ HatchingSection:NewToggle("Auto Equip Best", "Automatically equip ur best pets",
         repeat
             if getgenv().Balls == false then
                 rs.Events.UIAction:FireServer("EquipBestBalls")
-                wait(1)
             end
+            wait(1)
         until getgenv().Equip == false
     else
         getgenv().Equip = false
