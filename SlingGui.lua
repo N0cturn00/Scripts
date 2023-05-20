@@ -36,7 +36,7 @@ FarmingSection:NewToggle("Autofarm", "Turn Autofarm on/off (make sure to select 
         getgenv().Balls = true
         repeat
             rs.Events.RequestShoot:InvokeServer(CFrame.new(Areas, 3, -228) * CFrame.Angles(3.1415927410125732, 1.5255541896820068, -3.1415927410125732))
-            if getgenv().Craft == true then
+            if getgenv().Shiny == true then
                 rs.Events.UIAction:FireServer("CombineAllBalls")
             end
             if getgenv().Equip == true then
