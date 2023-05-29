@@ -95,6 +95,7 @@ end)
 FarmingSection:NewDropdown("Area", "Select the area you want to farm in", {1, 2, 3, 4, 5, 6, 7, 8, 9,}, function(AreaOption)
     print(AreaOption)
    	Areas = 618 - AreaOption * 168
+    pl.CFrame = CFrame.new(Area)
     print(Areas)
 end)
 
