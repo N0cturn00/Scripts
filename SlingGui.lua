@@ -24,6 +24,7 @@ getgenv().Equip = false;
 getgenv().Antiafk = false;
 getgenv().Webhook = false;
 getgenv().Achievements = false;
+getgenv().Daily = false;
 
 --Farming
 local Farming = Window:NewTab("Farming")
@@ -183,6 +184,18 @@ MiscSection:NewToggle("Auto Achievement", "Auto claims achievements", function(s
         until getgenv().Achievements == false
     else
         getgenv().Achievements = false
+    end
+end)
+
+MiscSection:NewToggle("Auto Daily", "Auto claims dailies", function(state)
+    if state then
+        getgenv().Daily = true
+        repeat
+            rs.Events.UIAction:FireServer("ClaimDailyReward")
+            wait(10)
+        until getgenv().Daily == false
+    else
+        getgenv().Daily = false
     end
 end)
 
