@@ -91,7 +91,7 @@ FarmingSection:NewSlider("Number a balls until resend", "Minimum of balls before
     print(BallValue)
 end)
 
-FarmingSection:NewDropdown("Area", "Select the area you want to farm in", {1, 2, 3, 4, 5, 6, 7, 8,}, function(AreaOption)
+FarmingSection:NewDropdown("Area", "Select the area you want to farm in", {1, 2, 3, 4, 5, 6, 7, 8, 9,}, function(AreaOption)
     print(AreaOption)
    	Areas = 618 - AreaOption * 168
     print(Areas)
@@ -149,7 +149,7 @@ HatchingSection:NewDropdown("Hatch Type", "Select the  number of eggs you can ha
     print(Type)
 end)
 
-HatchingSection:NewDropdown("Eggs", "Select the egg you want to hatch", {"Classic Egg", "Sand Egg", "Ice Egg", "Magma Egg", "Pearl Egg", "Moon Egg", "Candy Egg", "Mushroom Egg", "5M Egg"}, function(EggOption)
+HatchingSection:NewDropdown("Eggs", "Select the egg you want to hatch", {"Classic Egg", "Sand Egg", "Ice Egg", "Magma Egg", "Pearl Egg", "Moon Egg", "Candy Egg", "Mushroom Egg", "Hourglass Egg", "5M Egg",}, function(EggOption)
     print(EggOption)
     Egg = EggOption
     print(Egg)
