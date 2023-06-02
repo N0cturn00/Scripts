@@ -6,10 +6,6 @@ local Rendered = game.Workspace.Render
 local location = CFrame.new
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Sling Script v1.0", "Sentinel")
-local Boost = game.PLayers.LocalPlayer.PlayerGui.MainGui.StartFrame.Boosts
-local CoinBoost = Boost.Coins or Boost.ServerBoost2xCoins
-local LuckBoost = Boost.Lucky or Boost.ServerBoostLucky
-local SLuckBoost = Boost.Lucky and Boost.ServerBoostLucky
 local ResendSettings = plr.PlayerGui.MainGui.OtherFrames.Settings.ScrollingFrameHolder.ScrollingFrame.RenderOtherBalls.ToggleButton.Img
 local Areas
 local Resend
