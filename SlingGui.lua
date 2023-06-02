@@ -168,45 +168,6 @@ HatchingSection:NewDropdown("Eggs", "Select the egg you want to hatch", {"Classi
     print(Egg)
 end)
 
---HourGlass Egg
-local HourGlass = Window:NewTab("HourGlass Egg")
-local HourGlassSection = HourGlass:NewSection("HourGlass Egg")
-
-HourGlassSection:NewLabel("Only works if you're hatching the HourGlass Egg")
-
-HourGlassSection:NewToggle("Boosts luck when on Luck multiplier", "Choose if you want to automatically sell. Good for people without inf bag", function(state)
-    if state then
-        getgenv().Boostluck = true
-        repeat
-            if SLuckBoost.text ~= "00:00" and SLuckBoost.text ~= "00:01" then
-                rs.Events.UIAction:FireServer("SetBoostedEggTier", Type3)
-            elseif LuckBoost.text ~= "00:00" and LuckBoost.text ~= "00:01" then
-                rs.Events.UIAction:FireServer("SetBoostedEggTier", Type2)
-            else
-                rs.Events.UIAction:FireServer("SetBoostedEggTier", Type1)
-            end
-            wait(10)
-        until getgenv().Boostluck == false
-    else
-        getgenv().Boostluck = false
-    end
-end)
-
-HourGlassSection:NewDropdown("Original Option", "When no boost are active", {1, 2, 3, 4, 5, 6, 7}, function(Option)
-    Type1 = Option - 1
-    print(Type1)
-end)
-
-HourGlassSection:NewDropdown("1 Boost Active", "When 1 luck boost is active", {1, 2, 3, 4, 5, 6, 7}, function(Option)
-    Type2 = Option - 1
-    print(Type2)
-end)
-
-HourGlassSection:NewDropdown("2 Boost Active", "When 2 luck boost are active", {1, 2, 3, 4, 5, 6, 7}, function(Option)
-    Type3 = Option - 1
-    print(Type3)
-end)
-
 --Misc
 local Misc = Window:NewTab("Misc")
 local MiscSection = Misc:NewSection("Misc")
