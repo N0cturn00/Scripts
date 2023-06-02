@@ -85,10 +85,10 @@ end)
 FarmingSection:NewToggle("Ball Resend", "If you want that it resends when there a under a certain number of ball in the area", function(Resendstate)
     if Resendstate then
         getgenv().BallResend = true
-        if ResendSettings.Visible == true then
-            rs.Events.UIAction:FireServer("ChangeSetting","RenderOtherBalls")
-        end
         repeat
+            if ResendSettings.Visible == true then
+                rs.Events.UIAction:FireServer("ChangeSetting","RenderOtherBalls")
+            end
             for i in Rendered:GetChildren() do
                 BallNum = i
             end
