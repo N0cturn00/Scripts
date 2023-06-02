@@ -69,20 +69,6 @@ FarmingSection:NewToggle("Autosell", "Choose if you want to automatically sell. 
     end
 end)
 
-FarmingSection:NewToggle("Sell when boost", "Choose if you want to sell only if you have coin boost on. Good for people with inf bag", function(Autosellstate)
-    if Autosellstate then
-        getgenv().BoostSell = true
-        repeat
-            if CoinBoost.text ~= "00:00" and CoinBoost.text ~= "00:01" then
-                rs.Events.UIAction:FireServer("Sell")
-            end
-            wait(10)
-        until getgenv().BoostSell == false
-    else
-        getgenv().BoostSell = false
-    end
-end)
-
 FarmingSection:NewToggle("Ball Resend", "If you want that it resends when there a under a certain number of ball in the area", function(Resendstate)
     if Resendstate then
         getgenv().BallResend = true
