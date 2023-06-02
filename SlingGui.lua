@@ -6,7 +6,6 @@ local Rendered = game.Workspace.Render
 local location = CFrame.new
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Sling Script v1.0", "Sentinel")
-local ResendSettings = plr.PlayerGui.MainGui.OtherFrames.Settings.ScrollingFrameHolder.ScrollingFrame.RenderOtherBalls.ToggleButton.Img
 local Areas
 local Resend
 local Type
