@@ -6,8 +6,13 @@ local Rendered = game.Workspace.Render
 local location = CFrame.new
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Sling Script v1.0", "Sentinel")
+local Boost = game.PLayers.LocalPlayer.PlayerGui.MainGui.StartFrame.Boosts
+local CoinBoost = Boost.Coins or Boost.ServerBoost2xCoins
+local LuckBoost = Boost.Lucky or Boost.ServerBoostLucky
+local SLuckBoost = Boost.Lucky and Boost.ServerBoostLucky
 local Areas
 local Resend
+local ResendSet = plr.PlayerGui.MainGui.OtherFrames.Settings.ScrollingFrameHolder.ScrollingFrame.RenderOtherBalls.ToggleButton.Img
 local Type
 local Egg
 local WebhookUrl
@@ -64,10 +69,24 @@ FarmingSection:NewToggle("Autosell", "Choose if you want to automatically sell. 
     end
 end)
 
+FarmingSection:NewToggle("Sell when boost", "Choose if you want to sell only if you have coin boost on. Good for people with inf bag", function(Autosellstate)
+    if Autosellstate then
+        getgenv().BoostSell = true
+        repeat
+            if CoinBoost.text ~= "00:00" and CoinBoost.text ~= "00:01" then
+                rs.Events.UIAction:FireServer("Sell")
+            end
+            wait(10)
+        until getgenv().BoostSell == false
+    else
+        getgenv().BoostSell = false
+    end
+end)
+
 FarmingSection:NewToggle("Ball Resend", "If you want that it resends when there a under a certain number of ball in the area", function(Resendstate)
     if Resendstate then
         getgenv().BallResend = true
-        if ResendSettings.Visible == true then
+        if ResendSet.Visible == true then
             rs.Events.UIAction:FireServer("ChangeSetting","RenderOtherBalls")
         end
         repeat
@@ -161,6 +180,45 @@ HatchingSection:NewDropdown("Eggs", "Select the egg you want to hatch", {"Classi
     print(EggOption)
     Egg = EggOption
     print(Egg)
+end)
+
+--HourGlass Egg
+local HourGlass = Window:NewTab("HourGlass Egg")
+local HourGlassSection = HourGlass:NewSection("HourGlass Egg")
+
+HourGlassSection:NewLabel("Only works if you're hatching the HourGlass Egg")
+
+HourGlassSection:NewToggle("Boosts luck when on Luck multiplier", "Choose if you want to automatically sell. Good for people without inf bag", function(state)
+    if state then
+        getgenv().Boostluck = true
+        repeat
+            if SLuckBoost.text ~= "00:00" and SLuckBoost.text ~= "00:01" then
+                rs.Events.UIAction:FireServer("SetBoostedEggTier", Type3)
+            elseif LuckBoost.text ~= "00:00" and LuckBoost.text ~= "00:01" then
+                rs.Events.UIAction:FireServer("SetBoostedEggTier", Type2)
+            else
+                rs.Events.UIAction:FireServer("SetBoostedEggTier", Type1)
+            end
+            wait(10)
+        until getgenv().Boostluck == false
+    else
+        getgenv().Boostluck = false
+    end
+end)
+
+HourGlassSection:NewDropdown("Original Option", "When no boost are active", {1, 2, 3, 4, 5, 6, 7}, function(Option)
+    Type1 = Option - 1
+    print(Type1)
+end)
+
+HourGlassSection:NewDropdown("1 Boost Active", "When 1 luck boost is active", {1, 2, 3, 4, 5, 6, 7}, function(Option)
+    Type2 = Option - 1
+    print(Type2)
+end)
+
+HourGlassSection:NewDropdown("2 Boost Active", "When 2 luck boost are active", {1, 2, 3, 4, 5, 6, 7}, function(Option)
+    Type3 = Option - 1
+    print(Type3)
 end)
 
 --Misc
