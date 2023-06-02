@@ -6,12 +6,13 @@ local Rendered = game.Workspace.Render
 local location = CFrame.new
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Sling Script v1.0", "Sentinel")
-local Boost = game.PLayers.LocalPlayer.PlayerGui.MainGui.StartFrame.Boosts
+local Boost = plr.PlayerGui.MainGui.StartFrame.Boosts
 local CoinBoost = Boost.Coins or Boost.ServerBoost2xCoins
 local LuckBoost = Boost.Lucky or Boost.ServerBoostLucky
 local SLuckBoost = Boost.Lucky and Boost.ServerBoostLucky
 local Areas
 local Resend
+local ResendSettings = plr.PlayerGui.MainGui.OtherFrames.Settings.ScrollingFrameHolder.ScrollingFrame.RenderOtherBalls.ToggleButton.Img
 local Type
 local Egg
 local WebhookUrl
@@ -50,7 +51,7 @@ FarmingSection:NewToggle("Autofarm", "Turn Autofarm on/off (make sure to select 
                 rs.Events.UIAction:FireServer("EquipBestBalls")
             end
             if getgenv().Autosell == true then
-            rs.Events.UIAction:FireServer("Sell")
+                rs.Events.UIAction:FireServer("Sell")
             end
         until getgenv().Balls == false    
     else
@@ -62,7 +63,6 @@ end)
 FarmingSection:NewToggle("Autosell", "Choose if you want to automatically sell. Good for people without inf bag", function(Autosellstate)
     if Autosellstate then
         getgenv().Autosell = true
-
     else
         getgenv().Autosell = false
     end
@@ -85,7 +85,7 @@ end)
 FarmingSection:NewToggle("Ball Resend", "If you want that it resends when there a under a certain number of ball in the area", function(Resendstate)
     if Resendstate then
         getgenv().BallResend = true
-        if ResendSet.Visible == true then
+        if ResendSettings.Visible == true then
             rs.Events.UIAction:FireServer("ChangeSetting","RenderOtherBalls")
         end
         repeat
