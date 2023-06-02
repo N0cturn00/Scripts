@@ -6,19 +6,26 @@ local Rendered = game.Workspace.Render
 local location = CFrame.new
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Sling Script v1.0", "Sentinel")
+local Boost = game.PLayers.LocalPlayer.PlayerGui.MainGui.StartFrame.Boosts
+local CoinBoost = Boost.Coins or Boost.ServerBoost2xCoins
+local LuckBoost = Boost.Lucky or Boost.ServerBoostLucky
+local SLuckBoost = Boost.Lucky and Boost.ServerBoostLucky
 local Areas
 local Resend
+local ResendSettings = plr.PlayerGui.MainGui.OtherFrames.Settings.ScrollingFrameHolder.ScrollingFrame.RenderOtherBalls.ToggleButton.Img
 local Type
 local Egg
 local WebhookUrl
 local BallValue
 
 
-
+getgenv().Autosell = false;
+getgenv().BoostSell = false;
 getgenv().Balls = false;
 getgenv().BallResend = false;
 getgenv().Shiny = false;
 getgenv().Egg = false;
+getgenv().Boostluck = false;
 getgenv().FreeReward = false;
 getgenv().Equip = false;
 getgenv().Antiafk = false;
@@ -44,26 +51,44 @@ FarmingSection:NewToggle("Autofarm", "Turn Autofarm on/off (make sure to select 
                 rs.Events.UIAction:FireServer("EquipBestBalls")
             end
             if getgenv().Autosell == true then
-            game:GetService("ReplicatedStorage").Events.UIAction:FireServer("Sell")
+            rs.Events.UIAction:FireServer("Sell")
             end
         until getgenv().Balls == false    
     else
         getgenv().Balls = false
-        game:GetService("ReplicatedStorage").Events.RequestCancelShoot:FireServer()
+        rs.Events.RequestCancelShoot:FireServer()
     end 
 end)
 
 FarmingSection:NewToggle("Autosell", "Choose if you want to automatically sell. Good for people without inf bag", function(Autosellstate)
     if Autosellstate then
         getgenv().Autosell = true
+
     else
         getgenv().Autosell = false
     end
 end)
 
-FarmingSection:NewToggle("Ball Resend (Not working proprely)", "If you want that it resends when there a under a certain number of ball in the area", function(Resendstate)
+FarmingSection:NewToggle("Sell when boost", "Choose if you want to sell only if you have coin boost on. Good for people with inf bag", function(Autosellstate)
+    if Autosellstate then
+        getgenv().BoostSell = true
+        repeat
+            if CoinBoost.text ~= "00:00" and CoinBoost.text ~= "00:01" then
+                rs.Events.UIAction:FireServer("Sell")
+            end
+            wait(10)
+        until getgenv().BoostSell == false
+    else
+        getgenv().BoostSell = false
+    end
+end)
+
+FarmingSection:NewToggle("Ball Resend", "If you want that it resends when there a under a certain number of ball in the area", function(Resendstate)
     if Resendstate then
         getgenv().BallResend = true
+        if ResendSettings.Visible == true then
+            rs.Events.UIAction:FireServer("ChangeSetting","RenderOtherBalls")
+        end
         repeat
             for i in Rendered:GetChildren() do
                 BallNum = i
@@ -75,12 +100,12 @@ FarmingSection:NewToggle("Ball Resend (Not working proprely)", "If you want that
                     for i in Rendered:GetChildren() do
                         BallNum = i
                     end
-                    print("Waiting")
+                    print("Waiting, Current amount:", BallNum)
                 until BallNum < BallValue
                 print ("Relaunching")
-                game:GetService("ReplicatedStorage").Events.RequestCancelShoot:FireServer()
+                rs.Events.RequestCancelShoot:FireServer()
             end
-            wait(0.1)
+            wait(0.5)
         until getgenv().BallResend == false
     else
         getgenv().BallResend = false
@@ -157,6 +182,45 @@ HatchingSection:NewDropdown("Eggs", "Select the egg you want to hatch", {"Classi
     print(Egg)
 end)
 
+--HourGlass Egg
+local HourGlass = Window:NewTab("HourGlass Egg")
+local HourGlassSection = HourGlass:NewSection("HourGlass Egg")
+
+HourGlassSection:NewLabel("Only works if you're hatching the HourGlass Egg")
+
+HourGlassSection:NewToggle("Boosts luck when on Luck multiplier", "Choose if you want to automatically sell. Good for people without inf bag", function(state)
+    if state then
+        getgenv().Boostluck = true
+        repeat
+            if SLuckBoost.text ~= "00:00" and SLuckBoost.text ~= "00:01" then
+                rs.Events.UIAction:FireServer("SetBoostedEggTier", Type3)
+            elseif LuckBoost.text ~= "00:00" and LuckBoost.text ~= "00:01" then
+                rs.Events.UIAction:FireServer("SetBoostedEggTier", Type2)
+            else
+                rs.Events.UIAction:FireServer("SetBoostedEggTier", Type1)
+            end
+            wait(10)
+        until getgenv().Boostluck == false
+    else
+        getgenv().Boostluck = false
+    end
+end)
+
+HourGlassSection:NewDropdown("Original Option", "When no boost are active", {1, 2, 3, 4, 5, 6, 7}, function(Option)
+    Type1 = Option - 1
+    print(Type1)
+end)
+
+HourGlassSection:NewDropdown("1 Boost Active", "When 1 luck boost is active", {1, 2, 3, 4, 5, 6, 7}, function(Option)
+    Type2 = Option - 1
+    print(Type2)
+end)
+
+HourGlassSection:NewDropdown("2 Boost Active", "When 2 luck boost are active", {1, 2, 3, 4, 5, 6, 7}, function(Option)
+    Type3 = Option - 1
+    print(Type3)
+end)
+
 --Misc
 local Misc = Window:NewTab("Misc")
 local MiscSection = Misc:NewSection("Misc")
@@ -166,7 +230,7 @@ MiscSection:NewToggle("Auto time rewards", "Automatically collect time rewards",
         getgenv().FreeReward = true
         repeat
             for i=1,12 do
-                game:GetService("ReplicatedStorage").Events.UIAction:FireServer("ClaimTimeReward",i)
+                rs.Events.UIAction:FireServer("ClaimTimeReward",i)
                 wait(2)
             end
         until getgenv().FreeReward == false
