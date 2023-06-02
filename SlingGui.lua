@@ -7,9 +7,9 @@ local location = CFrame.new
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Sling Script v1.0", "Sentinel")
 local Boost = plr.PlayerGui.MainGui.StartFrame.Boosts
-local CoinBoost = Boost.Coins or Boost.ServerBoost2xCoins
-local LuckBoost = Boost.Lucky or Boost.ServerBoostLucky
-local SLuckBoost = Boost.Lucky and Boost.ServerBoostLucky
+local CoinBoost = Boost.Coins.Timer or Boost.ServerBoost2xCoins.Timer
+local LuckBoost = Boost.Lucky.Timer or Boost.ServerBoostLucky.Timer
+local SLuckBoost = Boost.Lucky.Timer and Boost.ServerBoostLucky.Timer
 local Areas
 local Resend
 local ResendSettings = plr.PlayerGui.MainGui.OtherFrames.Settings.ScrollingFrameHolder.ScrollingFrame.RenderOtherBalls.ToggleButton.Img
@@ -68,8 +68,8 @@ FarmingSection:NewToggle("Autosell", "Choose if you want to automatically sell. 
     end
 end)
 
-FarmingSection:NewToggle("Sell when boost", "Choose if you want to sell only if you have coin boost on. Good for people with inf bag", function(Autosellstate)
-    if Autosellstate then
+FarmingSection:NewToggle("Sell when boost", "Choose if you want to sell only if you have coin boost on. Good for people with inf bag", function(state)
+    if state then
         getgenv().BoostSell = true
         repeat
             if CoinBoost.text ~= "00:00" and CoinBoost.text ~= "00:01" then
