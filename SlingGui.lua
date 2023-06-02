@@ -111,7 +111,7 @@ FarmingSection:NewToggle("Ball Resend", "If you want that it resends when there 
     end
 end)
 
-FarmingSection:NewTextBox("Number of balls until resend", "Minimum of balls before resend", function(txt)
+FarmingSection:NewTextBox("Nb of Balls b4 resend", "Minimum of balls before resend", function(txt)
 	BallValue = txt
     print(BallValue)
 end)
