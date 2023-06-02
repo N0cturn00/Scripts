@@ -12,7 +12,6 @@ local LuckBoost = Boost.Lucky or Boost.ServerBoostLucky
 local SLuckBoost = Boost.Lucky and Boost.ServerBoostLucky
 local Areas
 local Resend
-local ResendSet = plr.PlayerGui.MainGui.OtherFrames.Settings.ScrollingFrameHolder.ScrollingFrame.RenderOtherBalls.ToggleButton.Img
 local Type
 local Egg
 local WebhookUrl
