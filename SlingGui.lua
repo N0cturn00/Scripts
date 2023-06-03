@@ -17,6 +17,17 @@ local Type
 local Egg
 local WebhookUrl
 local BallValue
+local Codes = {
+    [1] = "discord.gg/simulators";
+    [2] = "YAYSERIALS";
+    [3] = "TOTHEMOON";
+    [4] = "MONEYPLS";
+    [5] = "YAYTRADING";
+    [6] = "GLOWINGBLUEMUSHROOMS";
+    [7] = "WORLDGATE";
+    [8] = "10KDISCORDMEMBERS";
+    [9] = ""
+}
 
 
 getgenv().Autosell = false;
@@ -270,6 +281,12 @@ MiscSection:NewButton("Anti-Afk", "Make you unable to get kicked from being", fu
         wait(1)
         vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
     end)
+end)
+
+MiscSection:NewButton("Claim Codes", "Will claim all avaible codes", function()
+    for i,v in paris(Codes) do   
+        rs.Events.CheckCode:InvokeServer(v)
+    end
 end)
 
 --User
