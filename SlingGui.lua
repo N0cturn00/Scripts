@@ -1,3 +1,5 @@
+if not game:IsLoaded() then game.Loaded:Wait() end
+
 local plr = game:GetService("Players").LocalPlayer
 local uis = game:GetService("UserInputService")
 local rs = game:GetService("ReplicatedStorage")
@@ -28,7 +30,7 @@ local Codes = {
     [8] = "10KDISCORDMEMBERS";
     [9] = "200KGROUPMEMBERS";
 }
-
+local DiscordInvite = ""
 
 getgenv().Autosell = false;
 getgenv().BoostSell = false;
@@ -187,7 +189,7 @@ HatchingSection:NewDropdown("Hatch Type", "Select the  number of eggs you can ha
     print(Type)
 end)
 
-HatchingSection:NewDropdown("Eggs", "Select the egg you want to hatch", {"Classic Egg", "Sand Egg", "Ice Egg", "Magma Egg", "Pearl Egg", "Moon Egg", "Candy Egg", "Mushroom Egg", "Hourglass Egg", "5M Egg",}, function(EggOption)
+HatchingSection:NewDropdown("Eggs", "Select the egg you want to hatch", {"Classic Egg", "Sand Egg", "Ice Egg", "Magma Egg", "Pearl Egg", "Moon Egg", "Candy Egg", "Mushroom Egg", "Hourglass Egg", "7 Deadly Sins Egg",}, function(EggOption)
     print(EggOption)
     Egg = EggOption
     print(Egg)
@@ -324,4 +326,14 @@ local SettingsSection = Settings:NewSection("Settings")
 
 SettingsSection:NewKeybind("Toggle Ui", "Toggles the script GUI", Enum.KeyCode.F, function()
 	Library:ToggleUI()
+end)
+
+--Credits
+local Credits = Window:NewTab("Credits")
+local CreditsSection = Credits:NewSection("Credits")
+
+CreditsSection:NewLabel("Script made by Ruined#1295")
+
+CreditsSection:NewButton("Copy Discord server link", "", function()
+    setclipboard(DiscordInvite)
 end)
