@@ -130,10 +130,17 @@ FarmingSection:NewSlider("Number a balls until resend", "Minimum of balls before
     print(BallValue)
 end)
 
-FarmingSection:NewDropdown("Area", "Select the area you want to farm in", {1, 2, 3, 4, 5, 6, 7, 8, 9,}, function(AreaOption)
+FarmingSection:NewDropdown("World 1", "Select the area you want to farm in", {1, 2, 3, 4, 5, 6, 7, 8, 9,}, function(AreaOption)
     print(AreaOption)
    	Areas = 618 - AreaOption * 168
     pl.CFrame = CFrame.new(563 - AreaOption * 168, 4, -260)
+    print(Areas)
+end)
+
+FarmingSection:NewDropdown("Event", "Select the area you want to farm in", {1}, function(AreaOption)
+    print(AreaOption)
+   	Areas = -1923
+    pl.CFrame = CFrame.new(-1970, 4, -260)
     print(Areas)
 end)
 
