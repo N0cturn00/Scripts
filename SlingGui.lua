@@ -59,9 +59,11 @@ FarmingSection:NewToggle("Autofarm", "Turn Autofarm on/off (make sure to select 
             rs.Events.RequestShoot:InvokeServer(CFrame.new(Areas, 3, -228) * CFrame.Angles(3.1415927410125732, 1.5255541896820068, -3.1415927410125732))
             if getgenv().Shiny == true then
                 rs.Events.UIAction:FireServer("CombineAllBalls")
+		rs.Events.UIAction:FireServer("CombineAllEventBalls")
             end
             if getgenv().Equip == true then
                 rs.Events.UIAction:FireServer("EquipBestBalls")
+		rs.Events.UIAction:FireServer("EquipBestEventBalls")
             end
             if getgenv().Autosell == true then
                 rs.Events.UIAction:FireServer("Sell")
@@ -168,6 +170,7 @@ HatchingSection:NewToggle("Auto Shiny", "Automatically merges ur pets to make th
         repeat
             if getgenv().Balls == false then
                 rs.Events.UIAction:FireServer("CombineAllBalls")
+		rs.Events.UIAction:FireServer("CombineAllEventBalls")
             end
             wait(1)
         until getgenv().Shiny == false
@@ -182,6 +185,7 @@ HatchingSection:NewToggle("Auto Equip Best", "Automatically equip ur best pets",
         repeat
             if getgenv().Balls == false then
                 rs.Events.UIAction:FireServer("EquipBestBalls")
+		rs.Events.UIAction:FireServer("EquipBestEventBalls")
             end
             wait(1)
         until getgenv().Equip == false
