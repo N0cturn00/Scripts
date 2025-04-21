@@ -38,15 +38,19 @@ end
 
 local function RiftChecker()
     for _, child in ipairs(rifts:GetChildren()) do
-        if child:WaitForChild("Display").SurfaceGui:FindFirstChild("Icon") and not child.Decoration.Name:find("Notified") then
+        if child:WaitForChild("Display").SurfaceGui:FindFirstChild("Icon") and not child:WaitForChild("Decoration").Name:find("Notified") then
             local mult = child.Display.SurfaceGui.Icon.Luck.Text
             local Name = child.Name .." ".. mult
             local Height = child.Display.Position.Y
             local Time = child.Display.SurfaceGui.Timer.Text
             print(Name)
-            if child.Name:find("Aura") or mult == "x25" then
+            if child.Name:find("Aura") then
                 sendWebhookMessage(Name, math.round(Height), Time)
                 print("--------------------")
+            else if mult == "x25"
+                    if child.Name:find("event") or child.Name:find("night") or child.Name:find("void") or child.Name:find("rain") then
+                        sendWebhookMessage(Name, math.round(Height), Time)
+                    end
             end
             child.Decoration.Name = child.Decoration.Name .. " Notified"
         end
