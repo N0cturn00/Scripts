@@ -38,7 +38,7 @@ end
 
 local function RiftChecker()
     for _, child in ipairs(rifts:GetChildren()) do
-        if child:WaitForChild("Display").SurfaceGui:FindFirstChild("Icon") and not child:WaitForChild("Decoration").Name:find("Notified") then
+        if child:WaitForChild("Display").SurfaceGui:FindFirstChild("Icon") and child:FindFirstChild("Decoration") then
             local mult = child.Display.SurfaceGui.Icon.Luck.Text
             local Name = child.Name .." ".. mult
             local Height = child.Display.Position.Y
