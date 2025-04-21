@@ -8,7 +8,7 @@ local url = "https://discord.com/api/webhooks/1363754891721441300/Uz36RluyQ3Qaja
 
 local function sendWebhookMessage(rift, height, time)
     local data = {
-        ["content"] = "<@247460170743939072>",
+        ["content"] = "<@&1361887069831434411>",
         ["embeds"] = {{
             ["title"] = rift .. " Rift Found!",
             ["description"] = "Height: "..height.."\nTime: "..time.."\n\n[Join]( https://www.roblox.com/users/"..plr.UserId.."/profile)",
