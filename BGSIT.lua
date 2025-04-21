@@ -74,7 +74,7 @@ local SwitchToggle = RiftSection:CreateToggle("Normal", {
             repeat
                 print("checking...")
                 RiftChecker()
-                wait(1)
+                wait(5)
             until tostring(Value) == "false"
         end
     end,
