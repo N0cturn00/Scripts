@@ -47,10 +47,10 @@ local function RiftChecker()
             if child.Name:find("Aura") then
                 sendWebhookMessage(Name, math.round(Height), Time)
                 print("--------------------")
-            else if mult == "x25" then
-                    if child.Name:find("event") or child.Name:find("night") or child.Name:find("void") or child.Name:find("rain") then
-                        sendWebhookMessage(Name, math.round(Height), Time)
-                    end
+            elseif mult == "x25" then
+                if child.Name:find("event") or child.Name:find("night") or child.Name:find("void") or child.Name:find("rain") then
+                    sendWebhookMessage(Name, math.round(Height), Time)
+                end
             end
             child.Decoration.Name = child.Decoration.Name .. " Notified"
         end
